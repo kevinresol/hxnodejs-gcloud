@@ -15,18 +15,22 @@ class Generator {
 	static var printer = new Printer();
 	static var definitionDirectory = Sys.programPath().directory() + '/../../ref/docs/json/master/';
 	static var outputDirectory = Sys.programPath().directory() + '/../../src/';
-	static var keywords = ['public', 'private'];
+	static var keywords = ['public', 'private', 'import'];
+	static var typeNames = new Map();
 	
 	public static function main() {
 		var types:Array<GCloudType> = '$definitionDirectory/types.json'.getContent().parse();
-		
+		var definitions = [for(type in types) '$definitionDirectory/${type.contents}'.getContent().parse()];
+		for(def in definitions) {
+			var pack = ['gcloud'].concat(def.parent == null ? [] : def.parent.split('/'));
+			typeNames.set(def.id, pack.join('.') + '.' + def.name);
+		}
 		for(type in types) {
 			var def:Definition = '$definitionDirectory/${type.contents}'.getContent().parse();
 			switch def.type {
 				case 'class': buildClass(def);
 				case t: trace('unhandled definition type: "$t"');
 			}
-			// break; // TODO:
 		}
 	}
 	
@@ -37,7 +41,8 @@ class Generator {
 			case 'gcloud': 'GCloud';
 			case name: name;
 		}
-		cl.pack = ['gcloud'].concat(def.parent == null ? [] : def.parent.split('/'));
+		cl.pack = typeNames[def.id].split('.');
+		cl.pack.pop(); // pop the class name
 		cl.isExtern = true;
 		var require = ['gcloud'].concat(def.source.split('/').slice(1));
 		switch require.pop() {
@@ -54,7 +59,6 @@ class Generator {
 			pos: null, 
 		}];
 		for(method in def.methods) addMethod(cl, method);
-		
 		var folder = outputDirectory + cl.pack.join('/');
 		if(!folder.exists()) folder.createDirectory();
 		var code = printer.printTypeDefinition(cl);
@@ -83,36 +87,50 @@ class Generator {
 				value: null,
 			});
 			
-		var ret = switch method.returns {
+		var ret = method.type == 'constructor' ? null : switch method.returns {
 			case []: macro:Void;
 			case [v]: toHaxeType(v.types);
 			default: throw 'multiple return';
 		}
 		
+		var meta:Metadata = switch method.name {
+			case 'new': [{
+				name: ':selfCall',
+				pos: null,
+			}];
+			default: [for(permutation in permutations) {
+				name: ':overload',
+				params: [{
+					expr: EFunction(null, {
+						args: toHaxeArgs(topLevelParams.filter(function(p) return permutation.indexOf(p) == -1)),
+						ret: ret,
+						expr: {
+							expr: EBlock([]),
+							pos: null,
+						},
+					}),
+					pos: null,
+				}],
+				pos: null,
+			}];
+		}
+		
+		if(keywords.indexOf(method.name) != -1) {
+			meta.push({
+				name: ':native',
+				params: [{
+					expr: EConst(CString(method.name)),
+					pos:null, 
+				}],
+				pos: null,
+			});
+			method.name += '_';
+		}
+		
 		cl.fields.push({
 			doc: method.description,
 			name: method.name,
-			meta: switch method.name {
-				case 'new': [{
-					name: ':selfCall',
-					pos: null,
-				}];
-				default: [for(permutation in permutations) {
-					name: ':overload',
-					params: [{
-						expr: EFunction(null, {
-							args: toHaxeArgs(topLevelParams.filter(function(p) return permutation.indexOf(p) == -1)),
-							ret: ret,
-							expr: {
-								expr: EBlock([]),
-								pos: null,
-							},
-						}),
-						pos: null,
-					}],
-					pos: null,
-				}];
-			},
+			meta: meta,
 			pos: null,
 			kind: FFun({
 				args: toHaxeArgs(topLevelParams),
@@ -140,16 +158,16 @@ class Generator {
 			return if(v.endsWith('[]')) {
 				var type = single(v.substr(0, v.length - 2));
 				macro:Array<$type>;
-			} else switch (v) {
+			} else switch v.toLowerCase() {
 				case 'error': macro:js.Error;
-				case 'boolean': macro:Bool;
+				case 'bool' | 'boolean': macro:Bool;
 				case 'number': macro:Float;
 				case 'string': macro:String;
-				case v if(v.startsWith('<')):
-					dataTypeRegex.match(v);
-					var type = dataTypeRegex.matched(1);
-					// trace('from xml: ' + type);
-					macro:Dynamic;
+				case 'array': macro:Array<Dynamic>;
+				case 'key': macro:gcloud.datastore.Key;
+				case 'buffer': macro:js.node.buffer.Buffer;
+				case 'readstream': macro:js.node.fs.ReadStream;
+				case 'writablestream' | 'writestream': macro:js.node.fs.WriteStream;
 				case 'function':
 					if(params == null) {
 						macro:Void->Dynamic;
@@ -160,7 +178,7 @@ class Generator {
 							.map(function(p) return toHaxeType(p.types, p.name, params));
 						args.length == 0 ? macro:Void->Dynamic : TFunction(args, macro:Void);
 					}
-				case 'object' | 'options':
+				case 'object' | 'options' | 'obbject':
 					if(params == null) {
 						macro:Dynamic;
 					} else {
@@ -187,10 +205,22 @@ class Generator {
 							});
 						fields.length == 0 ? macro:Dynamic : TAnonymous(fields);
 					}
-				case 'Key':
-					macro:gcloud.datastore.Key;
+				
+				case v if(v.startsWith('<')):
+					dataTypeRegex.match(v);
+					var type = dataTypeRegex.matched(1);
+					if(!typeNames.exists(type)) macro:Dynamic;
+					else {
+						var pack = typeNames[type].split('.');
+						var name = pack.pop();
+						TPath({
+							name: name,
+							pack: pack
+						});
+					}
+					
 				default: 
-					// trace('unhandled type "$v"');
+					trace('unhandled type "$v"');
 					macro:Dynamic;
 			}
 		}
