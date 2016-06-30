@@ -1,0 +1,3 @@
+-cp generator/src
+-main Generator
+-x generator/bin/generator.n
