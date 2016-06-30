@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.operation") extern class Operation {
+@:jsRequire("gcloud", "compute.operation") extern class Operation {
 	/**
 		<p>An Operation object allows you to interact with a Google Compute Engine operation.</p><p>An operation can be a <a href="https://cloud.google.com/compute/docs/reference/v1/globalOperations">GlobalOperation</a>, <a href="https://cloud.google.com/compute/docs/reference/v1/regionOperations">RegionOperation</a>, or <a href="https://cloud.google.com/compute/docs/reference/v1/zoneOperations">ZoneOperation</a>.</p>
 	**/

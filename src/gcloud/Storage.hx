@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.storage") extern class Storage {
+@:jsRequire("gcloud", "storage") extern class Storage {
 	/**
 		<p>To access your Cloud Storage buckets, you will use the <code>bucket</code> function returned from this <code>storage</code> object.</p><p>The examples below will demonstrate the different usage patterns your app may need to connect to <code>gcloud</code> and access your bucket.</p>
 	**/

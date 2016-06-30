@@ -1,5 +1,5 @@
 package gcloud.pubsub;
-@:jsRequire("gcloud.pubsub.topic") extern class Topic {
+@:jsRequire("gcloud", "pubsub.topic") extern class Topic {
 	/**
 		<p>A Topic object allows you to interact with a Google Cloud Pub/Sub topic.</p>
 	**/

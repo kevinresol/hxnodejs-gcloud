@@ -52,10 +52,17 @@ class Generator {
 		
 		cl.meta = [{
 			name: ':jsRequire',
-			params: [{
-				expr: EConst(CString(require.join('.'))),
-				pos: null,
-			}],
+			params: {
+				var params = [{
+					expr: EConst(CString(require.shift())),
+					pos: null,
+				}];
+				if(require.length > 0) params.push({
+					expr: EConst(CString(require.join('.'))),
+					pos: null,
+				});
+				params;
+			},
 			pos: null, 
 		}];
 		for(method in def.methods) addMethod(cl, method);

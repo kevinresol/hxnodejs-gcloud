@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.instance-group") extern class InstanceGroup {
+@:jsRequire("gcloud", "compute.instance-group") extern class InstanceGroup {
 	/**
 		<p>You can create and manage groups of virtual machine instances so that you don&#39;t have to individually control each instance in your project.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.network") extern class Network {
+@:jsRequire("gcloud", "compute.network") extern class Network {
 	/**
 		<p>A Network object allows you to interact with a Google Compute Engine network.</p>
 	**/

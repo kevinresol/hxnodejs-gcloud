@@ -1,5 +1,5 @@
 package gcloud.bigquery;
-@:jsRequire("gcloud.bigquery.job") extern class Job {
+@:jsRequire("gcloud", "bigquery.job") extern class Job {
 	/**
 		<p>Job objects are returned from various places in the BigQuery API:</p><ul> <li><a data-custom-type="bigquery" data-method="getJobs">bigquery#getJobs</a></li> <li><a data-custom-type="bigquery" data-method="job">bigquery#job</a></li> <li><a data-custom-type="bigquery" data-method="query">bigquery#query</a></li> <li><a data-custom-type="bigquery" data-method="startJob">bigquery#startJob</a></li> <li><a data-custom-type="bigquery/table" data-method="copy">bigquery/table#copy</a></li> <li><a data-custom-type="bigquery/table" data-method="createWriteStream">bigquery/table#createWriteStream</a></li> <li><a data-custom-type="bigquery/table" data-method="export">bigquery/table#export</a></li> <li><a data-custom-type="bigquery/table" data-method="import">bigquery/table#import</a></li> </ul> <p>They can be used to check the status of a running job or fetching the results of a previously-executed one.</p>
 	**/

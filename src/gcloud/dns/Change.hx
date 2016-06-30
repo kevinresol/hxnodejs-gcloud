@@ -1,5 +1,5 @@
 package gcloud.dns;
-@:jsRequire("gcloud.dns.change") extern class Change {
+@:jsRequire("gcloud", "dns.change") extern class Change {
 	@:selfCall
 	function new(zone:gcloud.dns.Zone, id:String);
 	/**

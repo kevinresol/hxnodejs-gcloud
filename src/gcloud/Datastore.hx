@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.datastore") extern class Datastore {
+@:jsRequire("gcloud", "datastore") extern class Datastore {
 	/**
 		<p>Interact with the <a href="https://developers.google.com/datastore/">Google Cloud Datastore</a>.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud.bigquery;
-@:jsRequire("gcloud.bigquery.table") extern class Table {
+@:jsRequire("gcloud", "bigquery.table") extern class Table {
 	/**
 		<p>Table objects are returned by methods such as <a data-custom-type="bigquery/dataset" data-method="table">bigquery/dataset#table</a>, <a data-custom-type="bigquery/dataset" data-method="createTable">bigquery/dataset#createTable</a>, and <a data-custom-type="bigquery/dataset" data-method="getTables">bigquery/dataset#getTables</a>.</p>
 	**/

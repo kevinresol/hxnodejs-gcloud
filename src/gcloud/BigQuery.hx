@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.bigquery") extern class BigQuery {
+@:jsRequire("gcloud", "bigquery") extern class BigQuery {
 	/**
 		<p>The examples below will demonstrate the different usage patterns your app may need to support to retrieve a BigQuery object.</p>
 	**/

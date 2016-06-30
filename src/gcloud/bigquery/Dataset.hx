@@ -1,5 +1,5 @@
 package gcloud.bigquery;
-@:jsRequire("gcloud.bigquery.dataset") extern class Dataset {
+@:jsRequire("gcloud", "bigquery.dataset") extern class Dataset {
 	/**
 		<p>Interact with your BigQuery dataset. Create a Dataset instance with <a data-custom-type="bigquery" data-method="createDataset">bigquery#createDataset</a> or <a data-custom-type="bigquery" data-method="dataset">bigquery#dataset</a>.</p>
 	**/

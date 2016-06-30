@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.rule") extern class Rule {
+@:jsRequire("gcloud", "compute.rule") extern class Rule {
 	/**
 		<p>Forwarding rules work in conjunction with target pools and target instances to support load balancing and protocol forwarding features. To use load balancing and protocol forwarding, you must create a forwarding rule that directs traffic to specific target pools (for load balancing) or target instances (for protocol forwarding).</p>
 	**/

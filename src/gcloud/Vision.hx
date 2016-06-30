@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.vision") extern class Vision {
+@:jsRequire("gcloud", "vision") extern class Vision {
 	/**
 		<p>The <a href="https://cloud.google.com/vision/docs">Cloud Vision API</a> allows easy integration of vision detection features, including image labeling, face and landmark detection, optical character recognition (OCR), and tagging of explicit content.</p>
 	**/

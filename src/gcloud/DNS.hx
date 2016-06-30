@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.dns") extern class DNS {
+@:jsRequire("gcloud", "dns") extern class DNS {
 	/**
 		<p><a href="https://cloud.google.com/dns/what-is-cloud-dns">Google Cloud DNS</a> is a high- performance, resilient, global DNS service that provides a cost-effective way to make your applications and services available to your users. This programmable, authoritative DNS service can be used to easily publish and manage DNS records using the same infrastructure relied upon by Google.</p>
 	**/

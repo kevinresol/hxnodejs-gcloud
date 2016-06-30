@@ -1,5 +1,5 @@
 package gcloud.storage;
-@:jsRequire("gcloud.storage.file") extern class File {
+@:jsRequire("gcloud", "storage.file") extern class File {
 	/**
 		<p>A File object is created from your Bucket object using <a data-custom-type="storage/bucket" data-method="file">storage/bucket#file</a>.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.compute") extern class Compute {
+@:jsRequire("gcloud", "compute") extern class Compute {
 	/**
 		<p>A Compute object allows you to interact with the Google Compute Engine API. Using this object, you can access your instances with <a data-custom-type="compute/vm" data-method="">compute/vm</a>, disks with <a data-custom-type="compute/disk" data-method="">compute/disk</a>, and firewalls with <a data-custom-type="compute/firewall" data-method="">compute/firewall</a>.</p>
 	**/

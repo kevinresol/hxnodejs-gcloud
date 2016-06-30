@@ -1,5 +1,5 @@
 package gcloud.datastore;
-@:jsRequire("gcloud.datastore.query") extern class Query {
+@:jsRequire("gcloud", "datastore.query") extern class Query {
 	/**
 		<p>Build a Query object.</p><p><strong>Queries are built with <a data-custom-type="datastore" data-method="createQuery">datastore#createQuery</a> and <a data-custom-type="transaction" data-method="createQuery">transaction#createQuery</a>.</strong></p>
 	**/

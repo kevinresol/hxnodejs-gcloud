@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.resource") extern class Resource {
+@:jsRequire("gcloud", "resource") extern class Resource {
 	/**
 		<p><a href="https://cloud.google.com/resource-manager/">The Cloud Resource Manager</a> provides methods that you can use to programmatically manage your projects in the Google Cloud Platform. With this API, you can do the following:</p><ul> <li>Get a list of all projects associated with an account.</li> <li>Create new projects.</li> <li>Update existing projects.</li> <li>Delete projects.</li> <li>Recover projects.</li> </ul> 
 	**/

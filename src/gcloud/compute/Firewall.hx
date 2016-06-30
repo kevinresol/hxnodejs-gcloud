@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.firewall") extern class Firewall {
+@:jsRequire("gcloud", "compute.firewall") extern class Firewall {
 	/**
 		<p>A Firewall object allows you to interact with a Google Compute Engine firewall.</p>
 	**/

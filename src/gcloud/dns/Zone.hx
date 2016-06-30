@@ -1,5 +1,5 @@
 package gcloud.dns;
-@:jsRequire("gcloud.dns.zone") extern class Zone {
+@:jsRequire("gcloud", "dns.zone") extern class Zone {
 	/**
 		<p>A Zone object is used to interact with your project&#39;s managed zone. It will help you add or delete records, delete your zone, and many other convenience methods.</p>
 	**/

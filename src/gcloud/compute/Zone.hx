@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.zone") extern class Zone {
+@:jsRequire("gcloud", "compute.zone") extern class Zone {
 	/**
 		<p>A Zone object allows you to interact with a Google Compute Engine zone.</p>
 	**/

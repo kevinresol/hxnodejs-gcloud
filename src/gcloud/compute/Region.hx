@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.region") extern class Region {
+@:jsRequire("gcloud", "compute.region") extern class Region {
 	/**
 		<p>A Region object allows you to interact with a Google Compute Engine region.</p>
 	**/

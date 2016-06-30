@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.logging") extern class Logging {
+@:jsRequire("gcloud", "logging") extern class Logging {
 	/**
 		<p><a href="https://cloud.google.com/logging/docs">Google Cloud Logging</a> collects and stores logs from applications and services on the Google Cloud Platform:</p><ul> <li>Export your logs to Google Cloud Storage, Google BigQuery, or Google Cloud Pub/Sub.</li> <li>Integrate third-party logs from your virtual machine instances by installing the logging agent, <code>google-fluentd</code>.</li> </ul> 
 	**/

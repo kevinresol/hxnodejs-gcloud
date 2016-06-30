@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud.compute.vm") extern class VM {
+@:jsRequire("gcloud", "compute.vm") extern class VM {
 	/**
 		<p>An Instance object allows you to interact with a Google Compute Engine instance.</p>
 	**/

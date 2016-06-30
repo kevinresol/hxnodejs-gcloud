@@ -1,5 +1,5 @@
 package gcloud.datastore;
-@:jsRequire("gcloud.datastore.transaction") extern class Transaction {
+@:jsRequire("gcloud", "datastore.transaction") extern class Transaction {
 	/**
 		<p>Build a Transaction object. Transactions will be created for you by <a data-custom-type="datastore" data-method="">datastore</a>. When you need to run a transactional operation, use <a data-custom-type="datastore" data-method="runInTransaction">datastore#runInTransaction</a>.</p>
 	**/

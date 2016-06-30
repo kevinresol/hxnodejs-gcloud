@@ -1,5 +1,5 @@
 package gcloud.storage;
-@:jsRequire("gcloud.storage.bucket") extern class Bucket {
+@:jsRequire("gcloud", "storage.bucket") extern class Bucket {
 	/**
 		<p>Create a Bucket object to interact with a Google Cloud Storage bucket.</p>
 	**/

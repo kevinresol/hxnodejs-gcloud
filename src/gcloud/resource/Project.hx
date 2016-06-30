@@ -1,5 +1,5 @@
 package gcloud.resource;
-@:jsRequire("gcloud.resource.project") extern class Project {
+@:jsRequire("gcloud", "resource.project") extern class Project {
 	/**
 		<p>A Project object allows you to interact with a Google Cloud Platform project.</p>
 	**/

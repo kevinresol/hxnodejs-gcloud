@@ -1,5 +1,5 @@
 package gcloud.prediction;
-@:jsRequire("gcloud.prediction.model") extern class Model {
+@:jsRequire("gcloud", "prediction.model") extern class Model {
 	/**
 		<p>A Model object represents a trained model. You can train it by using <a data-custom-type="prediction/model" data-method="train">prediction/model#train</a> or ask for predictions with <a data-custom-type="prediction/model" data-method="query">prediction/model#query</a>.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud.translate") extern class Translate {
+@:jsRequire("gcloud", "translate") extern class Translate {
 	/**
 		<p>With <a href="https://cloud.google.com/translate">Google Translate</a>, you can dynamically translate text between thousands of language pairs.</p><p>The Google Translate API lets websites and programs integrate with Google Translate programmatically.</p><p>Google Translate API is available as a paid service. See the <a href="https://cloud.google.com/translate/v2/pricing.html">Pricing</a> and <a href="https://cloud.google.com/translate/v2/faq.html">FAQ</a> pages for details.</p><p><strong>An API key is required for Translate.</strong> See <a href="https://cloud.google.com/translate/v2/using_rest#auth">Identifying your application to Google</a>.</p>
 	**/
