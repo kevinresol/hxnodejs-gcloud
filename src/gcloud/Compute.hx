@@ -111,7 +111,7 @@ package gcloud;
 	/**
 		<p>Get a list of autoscalers. For a detailed description of this method&#39;s options, see the <a href="https://cloud.google.com/compute/docs/reference/v1/autoscalers/aggregatedList">API reference</a>.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.Autoscaler> -> Dynamic -> Dynamic -> Void):Void { })
 	function getAutoscalers(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -127,7 +127,7 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.Autoscaler> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of disks.</p>
 	**/
@@ -151,7 +151,7 @@ package gcloud;
 	/**
 		<p>Get a list of instance groups.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.InstanceGroup> -> Dynamic -> Dynamic -> Void):Void { })
 	function getInstanceGroups(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -167,7 +167,7 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.InstanceGroup> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of firewalls.</p>
 	**/
@@ -294,7 +294,7 @@ package gcloud;
 	/**
 		<p>Get a list of backend services.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.Service> -> Dynamic -> Dynamic -> Void):Void { })
 	function getServices(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -310,7 +310,7 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.Service> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of snapshots.</p>
 	**/

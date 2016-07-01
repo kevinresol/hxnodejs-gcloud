@@ -19,7 +19,7 @@ package gcloud;
 	/**
 		<p>Gets a list of trained models for the project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.prediction.Model> -> Dynamic -> Dynamic -> Void):Void { })
 	function getModels(query:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -32,7 +32,7 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>Page token.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.prediction.Model> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Create a model object representing a trained model.</p>
 	**/

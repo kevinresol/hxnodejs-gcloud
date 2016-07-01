@@ -17,7 +17,7 @@ package gcloud;
 	/**
 		<p>List all or some of the datasets in your project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.bigquery.Dataset> -> Dynamic -> Dynamic -> Void):Void { })
 	@:overload(function():Void { })
 	@:overload(function(query:{ /**
 		<ul> <li>List all datasets, including hidden ones.</li> </ul> 
@@ -50,11 +50,11 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>Token returned from a previous call, to request the next page of results.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.bigquery.Dataset> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get all of the jobs from your project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.bigquery.Job> -> Dynamic -> Dynamic -> Void):Void { })
 	@:overload(function():Void { })
 	@:overload(function(options:{ /**
 		<ul> <li>Display jobs owned by all users in the project.</li> </ul> 
@@ -109,7 +109,7 @@ package gcloud;
 		<ul> <li>Filter for job state. Acceptable values are &quot;done&quot;, &quot;pending&quot;, and &quot;running&quot;.</li> </ul> 
 	**/
 	@:optional
-	var stateFilter : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var stateFilter : String; }, callback:js.Error -> Array<gcloud.bigquery.Job> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Create a reference to an existing job.</p>
 	**/

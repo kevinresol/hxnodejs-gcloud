@@ -173,7 +173,7 @@ class Generator {
 				case 'array': macro:Array<Dynamic>;
 				case 'key': macro:gcloud.datastore.Key;
 				case 'buffer': macro:js.node.buffer.Buffer;
-				case 'readstream': macro:js.node.fs.ReadStream;
+				case 'readablestream' | 'readstream': macro:js.node.fs.ReadStream;
 				case 'writablestream' | 'writestream': macro:js.node.fs.WriteStream;
 				case 'function':
 					if(params == null) {
@@ -216,14 +216,23 @@ class Generator {
 				case v if(v.startsWith('<')):
 					dataTypeRegex.match(v);
 					var type = dataTypeRegex.matched(1);
-					if(!typeNames.exists(type)) macro:Dynamic;
-					else {
+					
+					function toType() {
 						var pack = typeNames[type].split('.');
 						var name = pack.pop();
-						TPath({
+						return TPath({
 							name: name,
 							pack: pack
 						});
+					}
+					return if(typeNames.exists(type)) toType()
+					else if(type.endsWith('[]')) {
+						type = type.substr(0, type.length - 2);
+						var ct = toType();
+						macro:Array<$ct>;
+					} else {
+						trace('type not found "$type"');
+						macro:Dynamic;
 					}
 					
 				default: 

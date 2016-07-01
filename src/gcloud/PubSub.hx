@@ -13,7 +13,7 @@ package gcloud;
 	/**
 		<p>Get a list of the subscriptions registered to all of your project&#39;s topics. You may optionally provide a query object as the first argument to customize the response.</p><p>Your provided callback will be invoked with an error object if an API error occurred or an array of <a data-custom-type="pubsub/subscription" data-method="">pubsub/subscription</a> objects.</p><p>To get subscriptions for a topic, see <a data-custom-type="pubsub/topic" data-method="">pubsub/topic</a>.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.pubsub.Subscription> -> Dynamic -> Dynamic -> Void):Void { })
 	function getSubscriptions(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -32,18 +32,18 @@ package gcloud;
 	var pageToken : String; /**
 		<ul> <li>The name of the topic to list subscriptions from.</li> </ul> 
 	**/
-	var topic : haxe.extern.EitherType<gcloud.pubsub.Topic, String>; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var topic : haxe.extern.EitherType<gcloud.pubsub.Topic, String>; }, callback:js.Error -> Array<gcloud.pubsub.Subscription> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of the topics registered to your project. You may optionally provide a query object as the first argument to customize the response.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.pubsub.Topic> -> Dynamic -> Dynamic -> Void):Void { })
 	function getTopics(query:{ /**
 		<ul> <li>Max number of results to return.</li> </ul> 
 	**/
 	var pageSize : Float; /**
 		<ul> <li>Page token.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.pubsub.Topic> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Create a subscription to a topic. You may optionally provide an object to customize the subscription.</p><p>Your provided callback will be invoked with an error object if an API error occurred or a <a data-custom-type="pubsub/subscription" data-method="">pubsub/subscription</a> object.</p>
 	**/

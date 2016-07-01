@@ -19,7 +19,7 @@ package gcloud;
 	/**
 		<p>Gets a list of managed zones for the project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.dns.Zone> -> Dynamic -> Void):Void { })
 	function getZones(query:{ /**
 		<ul> <li>Maximum number of API calls to make.</li> </ul> 
 	**/
@@ -29,7 +29,7 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>Page token.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.dns.Zone> -> Dynamic -> Void):Void;
 	/**
 		<p>Create a zone object representing a managed zone.</p>
 	**/

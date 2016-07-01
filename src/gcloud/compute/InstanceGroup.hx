@@ -30,7 +30,7 @@ package gcloud.compute;
 	/**
 		<p>Add one or more VMs to this instance group.</p>
 	**/
-	function add(vms:haxe.extern.EitherType<Dynamic, gcloud.compute.VM>, callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Void):Void;
+	function add(vms:haxe.extern.EitherType<Array<gcloud.compute.VM>, gcloud.compute.VM>, callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Void):Void;
 	/**
 		<p>Delete the instance group.</p>
 	**/
@@ -39,7 +39,7 @@ package gcloud.compute;
 	/**
 		<p>Get a list of VM instances in this instance group.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.VM> -> Dynamic -> Dynamic -> Void):Void { })
 	function getVMs(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -58,11 +58,11 @@ package gcloud.compute;
 	var pageToken : String; /**
 		<ul> <li>Only return instances which are running.</li> </ul> 
 	**/
-	var running : Bool; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var running : Bool; }, callback:js.Error -> Array<gcloud.compute.VM> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Remove one or more VMs from this instance group.</p>
 	**/
-	function remove(vms:haxe.extern.EitherType<Dynamic, gcloud.compute.VM>, callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Void):Void;
+	function remove(vms:haxe.extern.EitherType<Array<gcloud.compute.VM>, gcloud.compute.VM>, callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Void):Void;
 	/**
 		<p>Set the named ports for this instance group.</p>
 	**/

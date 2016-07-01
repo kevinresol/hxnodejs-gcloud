@@ -24,7 +24,7 @@ package gcloud;
 	/**
 		<p>List the entries in your logs.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.logging.Entry> -> Dynamic -> Dynamic -> Void):Void { })
 	function getEntries(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -46,11 +46,11 @@ package gcloud;
 	var pageSize : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.logging.Entry> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get the sinks associated with this project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.logging.Sink> -> Dynamic -> Void):Void { })
 	function getSinks(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -60,7 +60,7 @@ package gcloud;
 	var maxApiCalls : Float; /**
 		<ul> <li>Maximum number of results to return.</li> </ul> 
 	**/
-	var maxResults : Float; }, callback:js.Error -> Dynamic -> Dynamic -> Void):Void;
+	var maxResults : Float; }, callback:js.Error -> Array<gcloud.logging.Sink> -> Dynamic -> Void):Void;
 	/**
 		<p>Get a reference to a Cloud Logging log.</p>
 	**/

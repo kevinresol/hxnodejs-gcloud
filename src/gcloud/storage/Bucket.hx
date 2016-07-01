@@ -86,7 +86,7 @@ package gcloud.storage;
 	/**
 		<p>Get File objects for the files currently in the bucket.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.storage.File> -> Dynamic -> Dynamic -> Void):Void { })
 	@:overload(function():Void { })
 	@:overload(function(query:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
@@ -131,29 +131,29 @@ package gcloud.storage;
 	var pageToken : String; /**
 		<ul> <li>If true, returns File objects scoped to their versions.</li> </ul> 
 	**/
-	var versions : Bool; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var versions : Bool; }, callback:js.Error -> Array<gcloud.storage.File> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Make the bucket listing private.</p><p>You may also choose to make the contents of the bucket private by specifying <code>includeFiles: true</code>. This will automatically run <a data-custom-type="storage/file" data-method="makePrivate">storage/file#makePrivate</a> for every file in the bucket.</p><p>When specifying <code>includeFiles: true</code>, use <code>force: true</code> to delay execution of your callback until all files have been processed. By default, the callback is executed after the first error. Use <code>force</code> to queue such errors until all files have been processed, after which they will be returned as an array as the first argument to your callback.</p><p>NOTE: This may cause the process to be long-running and use a high number of requests. Use with caution.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.storage.File> -> Void):Void { })
 	function makePrivate(options:{ /**
 		<ul> <li>Make each file in the bucket private. Default: <code>false</code>.</li> </ul> 
 	**/
 	var includeFiles : Bool; /**
 		<ul> <li>Queue errors occurred while making files private until all files have been processed.</li> </ul> 
 	**/
-	var force : Bool; }, callback:js.Error -> Dynamic -> Void):Void;
+	var force : Bool; }, callback:js.Error -> Array<gcloud.storage.File> -> Void):Void;
 	/**
 		<p>Make the bucket publicly readable.</p><p>You may also choose to make the contents of the bucket publicly readable by specifying <code>includeFiles: true</code>. This will automatically run <a data-custom-type="storage/file" data-method="makePublic">storage/file#makePublic</a> for every file in the bucket.</p><p>When specifying <code>includeFiles: true</code>, use <code>force: true</code> to delay execution of your callback until all files have been processed. By default, the callback is executed after the first error. Use <code>force</code> to queue such errors until all files have been processed, after which they will be returned as an array as the first argument to your callback.</p><p>NOTE: This may cause the process to be long-running and use a high number of requests. Use with caution.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.storage.File> -> Void):Void { })
 	function makePublic(options:{ /**
 		<ul> <li>Make each file in the bucket publicly readable. Default: <code>false</code>.</li> </ul> 
 	**/
 	var includeFiles : Bool; /**
 		<ul> <li>Queue errors occurred while making files public until all files have been processed.</li> </ul> 
 	**/
-	var force : Bool; }, callback:js.Error -> Dynamic -> Void):Void;
+	var force : Bool; }, callback:js.Error -> Array<gcloud.storage.File> -> Void):Void;
 	/**
 		<p>Upload a file to the bucket. This is a convenience method that wraps <a data-custom-type="storage/file" data-method="createWriteStream">storage/file#createWriteStream</a>.</p><p>You can specify whether or not an upload is resumable by setting <code>options.resumable</code>. <em>Resumable uploads are enabled by default if your input file is larger than 5 MB.</em></p><p>For faster crc32c computation, you must manually install <a href="http://www.gitnpm.com/fast-crc32c"><code>fast-crc32c</code></a>:</p><pre><code>$ npm install --save fast-crc32c </code></pre>
 	**/

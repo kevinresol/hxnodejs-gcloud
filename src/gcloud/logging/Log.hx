@@ -38,7 +38,7 @@ package gcloud.logging;
 	/**
 		<p>This method is a wrapper around <a data-custom-type="logging" data-method="getEntries">logging#getEntries</a>, but with a filter specified to only return entries from this log.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.logging.Entry> -> Dynamic -> Dynamic -> Void):Void { })
 	function getEntries(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -60,7 +60,7 @@ package gcloud.logging;
 	var pageSize : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.logging.Entry> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Write a log entry with a severity of &quot;INFO&quot;.</p><p>This is a simple wrapper around <a data-custom-type="logging/log" data-method="write">logging/log#write</a>. All arguments are the same as documented there.</p>
 	**/
@@ -76,8 +76,8 @@ package gcloud.logging;
 	/**
 		<p>Write log entries to Cloud Logging.</p><p>While you may write a single entry at a time, batching multiple entries together is preferred to avoid reaching the queries per second limit.</p>
 	**/
-	@:overload(function(entry:haxe.extern.EitherType<Dynamic, gcloud.logging.Entry>, callback:js.Error -> Dynamic -> Void):Void { })
-	function write(entry:haxe.extern.EitherType<Dynamic, gcloud.logging.Entry>, options:{ /**
+	@:overload(function(entry:haxe.extern.EitherType<Array<gcloud.logging.Entry>, gcloud.logging.Entry>, callback:js.Error -> Dynamic -> Void):Void { })
+	function write(entry:haxe.extern.EitherType<Array<gcloud.logging.Entry>, gcloud.logging.Entry>, options:{ /**
 		<ul> <li>Labels to set on the log.</li> </ul> 
 	**/
 	var labels : Array<Dynamic>; /**

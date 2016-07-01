@@ -98,7 +98,7 @@ package gcloud.compute;
 	/**
 		<p>Get a list of autoscalers from this zone.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.Autoscaler> -> Dynamic -> Dynamic -> Void):Void { })
 	function getAutoscalers(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -114,7 +114,7 @@ package gcloud.compute;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.Autoscaler> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of disks in this zone.</p>
 	**/
@@ -138,7 +138,7 @@ package gcloud.compute;
 	/**
 		<p>Get a list of instance groups for this zone.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.InstanceGroup> -> Dynamic -> Dynamic -> Void):Void { })
 	function getInstanceGroups(options:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -154,7 +154,7 @@ package gcloud.compute;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.InstanceGroup> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Get a list of operations for this zone.</p>
 	**/

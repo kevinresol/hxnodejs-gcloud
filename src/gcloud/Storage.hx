@@ -33,7 +33,7 @@ package gcloud;
 	/**
 		<p>Get Bucket objects for all of the buckets in your project.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.storage.Bucket> -> Dynamic -> Dynamic -> Void):Void { })
 	@:overload(function():Void { })
 	@:overload(function(query:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
@@ -60,5 +60,5 @@ package gcloud;
 	var maxResults : Float; /**
 		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.storage.Bucket> -> Dynamic -> Dynamic -> Void):Void;
 }

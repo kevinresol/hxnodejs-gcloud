@@ -48,7 +48,7 @@ package gcloud.bigquery;
 	/**
 		<p>Get a list of tables.</p>
 	**/
-	@:overload(function(callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void { })
+	@:overload(function(callback:js.Error -> Array<gcloud.bigquery.Table> -> Dynamic -> Dynamic -> Void):Void { })
 	function getTables(query:{ /**
 		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
 	**/
@@ -61,7 +61,7 @@ package gcloud.bigquery;
 	var maxResults : Float; /**
 		<ul> <li>Token returned from a previous call, to request the next page of results.</li> </ul> 
 	**/
-	var pageToken : String; }, callback:js.Error -> Dynamic -> Dynamic -> Dynamic -> Void):Void;
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.bigquery.Table> -> Dynamic -> Dynamic -> Void):Void;
 	/**
 		<p>Run a query scoped to your dataset.</p><p>See <a data-custom-type="bigquery" data-method="query">bigquery#query</a> for full documentation of this method.</p>
 	**/
