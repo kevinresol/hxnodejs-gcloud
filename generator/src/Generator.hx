@@ -43,7 +43,7 @@ class Generator {
 		if(def.type != 'class') throw 'assert';
 		var cl = macro class {}
 		cl.name = switch def.name {
-			case 'google-cloud': 'GoogleCloud';
+			case 'gcloud': 'GoogleCloud';
 			case name: name;
 		}
 		cl.pack = typeNames[def.id].split('.');
