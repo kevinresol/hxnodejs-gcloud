@@ -1,4 +1,4 @@
-package gcloud.datastore;
+package google.cloud.datastore;
 
 typedef Key = {
 	namespace:String,
