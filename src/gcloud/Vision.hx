@@ -1,7 +1,7 @@
 package gcloud;
-@:jsRequire("gcloud", "vision") extern class Vision {
+@:jsRequire("google-cloud", "vision") extern class Vision {
 	/**
-		<p>The <a href="https://cloud.google.com/vision/docs">Cloud Vision API</a> allows easy integration of vision detection features, including image labeling, face and landmark detection, optical character recognition (OCR), and tagging of explicit content.</p>
+		<p class="notice">  <strong>This is a Beta release of Google Cloud Vision.</strong> This API is not covered  by any SLA or deprecation policy and may be subject to backward-  incompatible changes. </p> <p>The <a href="https://cloud.google.com/vision/docs">Cloud Vision API</a> allows easy integration of vision detection features, including image labeling, face and landmark detection, optical character recognition (OCR), and tagging of explicit content.</p>
 	**/
 	@:selfCall
 	function new(options:Dynamic);
@@ -12,14 +12,14 @@ package gcloud;
 	/**
 		<p>Detect properties from an image (or images) of one or more types.</p><h4>API simplifications</h4> <p>The raw API response will return some values in a range from <code>VERY_UNLIKELY</code> to <code>VERY_LIKELY</code>. For simplification, any value less than <code>LIKELY</code> is converted to <code>false</code>.</p><ul> <li><strong>False</strong></li> <li><code>VERY_UNLIKELY</code></li> <li><code>UNLIKELY</code></li> <li><code>POSSIBLE</code></li> <li><strong>True</strong></li> <li><code>LIKELY</code></li> <li><code>VERY_LIKELY</code></li> </ul> <p>The API will also return many values represented in a <code>[0,1]</code> range. We convert these to a <code>[0,100]</code> value. E.g, <code>0.4</code> is represented as <code>40</code>.</p><p>For the response in the original format, review the <code>apiResponse</code> argument your callback receives.</p>
 	**/
-	@:overload(function(images:haxe.extern.EitherType<Array<gcloud.storage.File>, haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<Array<String>, String>>>, callback:js.Error -> haxe.extern.EitherType<Array<{ /**
+	@:overload(function(images:haxe.extern.EitherType<Array<gcloud.storage.File>, haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<Array<js.node.buffer.Buffer>, haxe.extern.EitherType<js.node.buffer.Buffer, haxe.extern.EitherType<Array<String>, String>>>>>, callback:js.Error -> haxe.extern.EitherType<Array<{ /**
 		<ul> <li>It&#39;s possible for part of your request to be completed successfully, while a single feature request was  not successful. Each returned detection will have an <code>errors</code> array,  including any of these errors which may have occurred.</li> </ul> 
 	**/
 	var errors : Array<Dynamic>; }>, { /**
 		<ul> <li>It&#39;s possible for part of your request to be completed successfully, while a single feature request was  not successful. Each returned detection will have an <code>errors</code> array,  including any of these errors which may have occurred.</li> </ul> 
 	**/
 	var errors : Array<Dynamic>; }> -> Dynamic -> Void):Void { })
-	function detect(images:haxe.extern.EitherType<Array<gcloud.storage.File>, haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<Array<String>, String>>>, options:haxe.extern.EitherType<{ /**
+	function detect(images:haxe.extern.EitherType<Array<gcloud.storage.File>, haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<Array<js.node.buffer.Buffer>, haxe.extern.EitherType<js.node.buffer.Buffer, haxe.extern.EitherType<Array<String>, String>>>>>, options:haxe.extern.EitherType<{ /**
 		<ul> <li>See an <a href="https://cloud.google.com/vision/reference/rest/v1/images/annotate#ImageContext"><code>ImageContext</code></a>  resource.</li> </ul> 
 	**/
 	@:optional

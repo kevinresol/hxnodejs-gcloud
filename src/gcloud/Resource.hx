@@ -1,7 +1,7 @@
 package gcloud;
-@:jsRequire("gcloud", "resource") extern class Resource {
+@:jsRequire("google-cloud", "resource") extern class Resource {
 	/**
-		<p><a href="https://cloud.google.com/resource-manager/">The Cloud Resource Manager</a> provides methods that you can use to programmatically manage your projects in the Google Cloud Platform. With this API, you can do the following:</p><ul> <li>Get a list of all projects associated with an account.</li> <li>Create new projects.</li> <li>Update existing projects.</li> <li>Delete projects.</li> <li>Recover projects.</li> </ul> 
+		<p class="notice">  <strong>This is a Beta release of Cloud Resource Manager.</strong> This feature is not  covered by any SLA or deprecation policy and may be subject to  backward-incompatible changes. </p> <p><a href="https://cloud.google.com/resource-manager/">The Cloud Resource Manager</a> provides methods that you can use to programmatically manage your projects in the Google Cloud Platform. With this API, you can do the following:</p><ul> <li>Get a list of all projects associated with an account.</li> <li>Create new projects.</li> <li>Update existing projects.</li> <li>Delete projects.</li> <li>Recover projects.</li> </ul> 
 	**/
 	@:selfCall
 	function new(options:Dynamic);

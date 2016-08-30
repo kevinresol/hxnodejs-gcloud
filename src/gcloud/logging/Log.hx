@@ -1,5 +1,5 @@
 package gcloud.logging;
-@:jsRequire("gcloud", "logging.log") extern class Log {
+@:jsRequire("google-cloud", "logging.log") extern class Log {
 	/**
 		<p>A log is a named collection of entries, each entry representing a timestamped event. Logs can be produced by Google Cloud Platform services, by third-party services, or by your applications. For example, the log <code>apache-access</code> is produced by the Apache Web Server, but the log <code>compute.googleapis.com/activity_log</code> is produced by Google Compute Engine.</p>
 	**/

@@ -1,10 +1,14 @@
 package gcloud.datastore;
-@:jsRequire("gcloud", "datastore.transaction") extern class Transaction {
+@:jsRequire("google-cloud", "datastore.transaction") extern class Transaction {
 	/**
-		<p>Build a Transaction object. Transactions will be created for you by <a data-custom-type="datastore" data-method="">datastore</a>. When you need to run a transactional operation, use <a data-custom-type="datastore" data-method="runInTransaction">datastore#runInTransaction</a>.</p>
+		<p>A transaction is a set of Datastore operations on one or more entities. Each transaction is guaranteed to be atomic, which means that transactions are never partially applied. Either all of the operations in the transaction are applied, or none of them are applied.</p>
 	**/
 	@:selfCall
 	function new();
+	/**
+		<p>Commit the remote transaction and finalize the current transaction instance.</p><p>If the commit request fails, we will automatically rollback the transaction.</p>
+	**/
+	function commit(callback:js.Error -> Dynamic -> Void):Void;
 	/**
 		<p>Create a query for the specified kind. See <a data-custom-type="datastore/query" data-method="">datastore/query</a> for all of the available methods.</p>
 	**/
@@ -18,6 +22,10 @@ package gcloud.datastore;
 		<p>Reverse a transaction remotely and finalize the current transaction instance.</p>
 	**/
 	function rollback(callback:js.Error -> Dynamic -> Void):Void;
+	/**
+		<p>Begin a remote transaction. In the callback provided, run your transactional commands.</p>
+	**/
+	function run(callback:js.Error -> gcloud.datastore.Transaction -> Dynamic -> Void):Void;
 	/**
 		<p>Insert or update the specified object(s) in the current transaction. If a key is incomplete, its associated object is inserted and the original Key object is updated to contain the generated ID.</p><p>This method will determine the correct Datastore method to execute (<code>upsert</code>, <code>insert</code>, or <code>update</code>) by using the key(s) provided. For example, if you provide an incomplete key (one without an ID), the request will create a new entity and have its ID automatically assigned. If you provide a complete key, the entity will be updated with the data specified.</p><p>By default, all properties are indexed. To prevent a property from being included in <em>all</em> indexes, you must supply an entity&#39;s <code>data</code> property as an array. See below for an example.</p>
 	**/

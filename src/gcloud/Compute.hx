@@ -1,8 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud", "compute") extern class Compute {
-	/**
-		<p>A Compute object allows you to interact with the Google Compute Engine API. Using this object, you can access your instances with <a data-custom-type="compute/vm" data-method="">compute/vm</a>, disks with <a data-custom-type="compute/disk" data-method="">compute/disk</a>, and firewalls with <a data-custom-type="compute/firewall" data-method="">compute/firewall</a>.</p>
-	**/
+@:jsRequire("google-cloud", "compute") extern class Compute {
 	@:selfCall
 	function new(options:Dynamic);
 	/**
@@ -212,6 +209,26 @@ package gcloud;
 	**/
 	var pageToken : String; }, callback:js.Error -> gcloud.compute.HealthCheck -> Dynamic -> Dynamic -> Void):Void;
 	/**
+		<p>Get a list of machine types in this project.</p>
+	**/
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.MachineType> -> Dynamic -> Dynamic -> Void):Void { })
+	function getMachineTypes(options:{ /**
+		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
+	**/
+	var autoPaginate : Bool; /**
+		<ul> <li>Search filter in the format of <code>{name} {comparison} {filterString}</code>.<ul> <li><strong><code>name</code></strong>: the name of the field to compare</li> <li><strong><code>comparison</code></strong>: the comparison operator, <code>eq</code> (equal) or <code>ne</code> (not equal)</li> <li><strong><code>filterString</code></strong>: the string to filter to. For string fields, this can be a regular expression.</li> </ul> </li> </ul> 
+	**/
+	var filter : String; /**
+		<ul> <li>Maximum number of API calls to make.</li> </ul> 
+	**/
+	var maxApiCalls : Float; /**
+		<ul> <li>Maximum number of machineTypes to return.</li> </ul> 
+	**/
+	var maxResults : Float; /**
+		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
+	**/
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.MachineType> -> Dynamic -> Dynamic -> Void):Void;
+	/**
 		<p>Get a list of networks.</p>
 	**/
 	@:overload(function(callback:js.Error -> gcloud.compute.Network -> Dynamic -> Dynamic -> Void):Void { })
@@ -332,6 +349,26 @@ package gcloud;
 	**/
 	var pageToken : String; }, callback:js.Error -> gcloud.compute.Snapshot -> Dynamic -> Dynamic -> Void):Void;
 	/**
+		<p>Get a list of subnetworks in this project.</p>
+	**/
+	@:overload(function(callback:js.Error -> gcloud.compute.Subnetwork -> Dynamic -> Dynamic -> Void):Void { })
+	function getSubnetworks(options:{ /**
+		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
+	**/
+	var autoPaginate : Bool; /**
+		<ul> <li>Search filter in the format of <code>{name} {comparison} {filterString}</code>.<ul> <li><strong><code>name</code></strong>: the name of the field to compare</li> <li><strong><code>comparison</code></strong>: the comparison operator, <code>eq</code> (equal) or <code>ne</code> (not equal)</li> <li><strong><code>filterString</code></strong>: the string to filter to. For string fields, this can be a regular expression.</li> </ul> </li> </ul> 
+	**/
+	var filter : String; /**
+		<ul> <li>Maximum number of API calls to make.</li> </ul> 
+	**/
+	var maxApiCalls : Float; /**
+		<ul> <li>Maximum number of subnetworks to return.</li> </ul> 
+	**/
+	var maxResults : Float; /**
+		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
+	**/
+	var pageToken : String; }, callback:js.Error -> gcloud.compute.Subnetwork -> Dynamic -> Dynamic -> Void):Void;
+	/**
 		<p>Get a list of virtual machine instances.</p>
 	**/
 	@:overload(function(callback:js.Error -> gcloud.compute.VM -> Dynamic -> Dynamic -> Void):Void { })
@@ -407,4 +444,8 @@ package gcloud;
 		<p>Get a reference to a Google Compute Engine zone.</p>
 	**/
 	function zone(name:String):gcloud.compute.Zone;
+	/**
+		<p>Register a single callback that will wait for an operation to finish before being executed.</p>
+	**/
+	function execAfterOperation_():js.Error -> Dynamic -> Void;
 }

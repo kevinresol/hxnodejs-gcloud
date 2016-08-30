@@ -1,7 +1,7 @@
 package gcloud;
-@:jsRequire("gcloud", "storage") extern class Storage {
+@:jsRequire("google-cloud", "storage") extern class Storage {
 	/**
-		<p>To access your Cloud Storage buckets, you will use the <code>bucket</code> function returned from this <code>storage</code> object.</p><p>The examples below will demonstrate the different usage patterns your app may need to connect to <code>gcloud</code> and access your bucket.</p>
+		<p><h4>ACLs</h4> Google Cloud Storage uses access control lists (ACLs) to manage object and bucket access. ACLs are the mechanism you use to share files with other users and allow other users to access your buckets and files.</p><p>To learn more about ACLs, read this overview on <a href="https://cloud.google.com/storage/docs/access-control">Access Control</a>.</p>
 	**/
 	@:selfCall
 	function new(options:Dynamic);

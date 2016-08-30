@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.zone") extern class Zone {
+@:jsRequire("google-cloud", "compute.zone") extern class Zone {
 	/**
 		<p>A Zone object allows you to interact with a Google Compute Engine zone.</p>
 	**/
@@ -156,6 +156,23 @@ package gcloud.compute;
 	**/
 	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.InstanceGroup> -> Dynamic -> Dynamic -> Void):Void;
 	/**
+		<p>Get a list of machine types for this zone.</p>
+	**/
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.MachineType> -> Dynamic -> Dynamic -> Void):Void { })
+	function getMachineTypes(options:{ /**
+		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
+	**/
+	var autoPaginate : Bool; /**
+		<ul> <li>Maximum number of API calls to make.</li> </ul> 
+	**/
+	var maxApiCalls : Float; /**
+		<ul> <li>Maximum number of machineTypes to return.</li> </ul> 
+	**/
+	var maxResults : Float; /**
+		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
+	**/
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.MachineType> -> Dynamic -> Dynamic -> Void):Void;
+	/**
 		<p>Get a list of operations for this zone.</p>
 	**/
 	@:overload(function(callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Dynamic -> Void):Void { })
@@ -193,6 +210,10 @@ package gcloud.compute;
 		<p>Get a reference to a Google Compute Engine instance group.</p>
 	**/
 	function instanceGroup(name:String):gcloud.compute.InstanceGroup;
+	/**
+		<p>Get a reference to a Google Compute Engine machine type.</p>
+	**/
+	function machineType(name:String):gcloud.compute.MachineType;
 	/**
 		<p>Get a reference to a Google Compute Engine zone operation.</p>
 	**/

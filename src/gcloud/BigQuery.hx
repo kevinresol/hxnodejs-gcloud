@@ -1,7 +1,7 @@
 package gcloud;
-@:jsRequire("gcloud", "bigquery") extern class BigQuery {
+@:jsRequire("google-cloud", "bigquery") extern class BigQuery {
 	/**
-		<p>The examples below will demonstrate the different usage patterns your app may need to support to retrieve a BigQuery object.</p>
+		<p>In the following examples from this page and the other modules (<code>Dataset</code>, <code>Table</code>, etc.), we are going to be using a dataset from <a href="http://goo.gl/f2SXcb">data.gov</a> of higher education institutions.</p><p>We will create a table with the correct schema, import the public CSV file into that table, and query it for data.</p>
 	**/
 	@:selfCall
 	function new(options:Dynamic);

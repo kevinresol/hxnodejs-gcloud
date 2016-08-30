@@ -1,5 +1,5 @@
 package gcloud.dns;
-@:jsRequire("gcloud", "dns.record") extern class Record {
+@:jsRequire("google-cloud", "dns.record") extern class Record {
 	/**
 		<p>Create a Resource Record object.</p>
 	**/

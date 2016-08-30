@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.address") extern class Address {
+@:jsRequire("google-cloud", "compute.address") extern class Address {
 	/**
 		<p>An Address object allows you to interact with a Google Compute Engine address.</p>
 	**/

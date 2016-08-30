@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.health-check") extern class HealthCheck {
+@:jsRequire("google-cloud", "compute.health-check") extern class HealthCheck {
 	/**
 		<p>Health checks ensure that Compute Engine forwards new connections only to instances that are up and ready to receive them. Compute Engine sends health check requests to each instance at the specified frequency; once an instance exceeds its allowed number of health check failures, it is no longer considered an eligible instance for receiving new traffic.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.snapshot") extern class Snapshot {
+@:jsRequire("google-cloud", "compute.snapshot") extern class Snapshot {
 	/**
 		<p>A Snapshot object allows you to interact with a Google Compute Engine snapshot.</p>
 	**/

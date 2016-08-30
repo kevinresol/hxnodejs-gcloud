@@ -1,5 +1,5 @@
 package gcloud.storage;
-@:jsRequire("gcloud", "storage.bucket") extern class Bucket {
+@:jsRequire("google-cloud", "storage.bucket") extern class Bucket {
 	/**
 		<p>Create a Bucket object to interact with a Google Cloud Storage bucket.</p>
 	**/
@@ -162,12 +162,12 @@ package gcloud.storage;
 		<ul> <li>The place to save your file. If given a string, the file will be uploaded to the bucket  using the string as a filename. When given a File object, your local file  will be uploaded to the File object&#39;s bucket and under the File object&#39;s  name. Lastly, when this argument is omitted, the file is uploaded to your  bucket using the name of the local file.</li> </ul> 
 	**/
 	var destination : haxe.extern.EitherType<gcloud.storage.File, String>; /**
+		<ul> <li>A custom encryption key. See <a href="https://cloud.google.com/storage/docs/encryption#customer-supplied">Customer-supplied Encryption Keys</a>.</li> </ul> 
+	**/
+	var encryptionKey : String; /**
 		<ul> <li>Automatically gzip the file. This will set <code>options.metadata.contentEncoding</code> to <code>gzip</code>.</li> </ul> 
 	**/
 	var gzip : Bool; /**
-		<ul> <li>A custom encryption key. See <a href="https://cloud.google.com/storage/docs/encryption#customer-supplied">Customer-supplied Encryption Keys</a>.</li> </ul> 
-	**/
-	var key : String; /**
 		<ul> <li>See an <a href="https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request_properties_JSON">Objects: insert request body</a>.</li> </ul> 
 	**/
 	var metadata : Dynamic; /**

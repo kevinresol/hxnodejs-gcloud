@@ -1,5 +1,5 @@
 package gcloud.logging;
-@:jsRequire("gcloud", "logging.sink") extern class Sink {
+@:jsRequire("google-cloud", "logging.sink") extern class Sink {
 	/**
 		<p>A sink is an object that lets you to specify a set of log entries to export to a particular destination. Cloud Logging lets you export log entries to destinations including Google Cloud Storage buckets (for long term log storage), Google BigQuery datasets (for log analysis), Google Pub/Sub (for streaming to other applications).</p>
 	**/

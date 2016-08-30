@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud", "pubsub") extern class PubSub {
+@:jsRequire("google-cloud", "pubsub") extern class PubSub {
 	/**
 		<p><a href="https://developers.google.com/pubsub/overview">Google Cloud Pub/Sub</a> is a reliable, many-to-many, asynchronous messaging service from Google Cloud Platform.</p><p>The <code>PUBSUB_EMULATOR_HOST</code> environment variable from the gcloud SDK is honored, otherwise the actual API endpoint will be used.</p>
 	**/

@@ -1,5 +1,5 @@
 package gcloud.storage;
-@:jsRequire("gcloud", "storage.file") extern class File {
+@:jsRequire("google-cloud", "storage.file") extern class File {
 	/**
 		<p>A File object is created from your Bucket object using <a data-custom-type="storage/bucket" data-method="file">storage/bucket#file</a>.</p>
 	**/
@@ -33,14 +33,14 @@ package gcloud.storage;
 	**/
 	function acl():Void;
 	/**
-		<p>Copy this file to another file. By default, this will copy the file to the same bucket, but you can choose to copy it to another Bucket by providing either a Bucket or File object.</p>
+		<p>Copy this file to another file. By default, this will copy the file to the same bucket, but you can choose to copy it to another Bucket by providing a Bucket or File object or a URL starting with &quot;gs://&quot;.</p>
 	**/
 	@:overload(function(destination:haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<gcloud.storage.Bucket, String>>):Void { })
 	function copy(destination:haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<gcloud.storage.Bucket, String>>, callback:js.Error -> gcloud.storage.File -> Dynamic -> Void):Void;
 	/**
 		<p>Create a readable stream to read the contents of the remote file. It can be piped to a writable stream or listened to for &#39;data&#39; events to read a file&#39;s contents.</p><p>In the unlikely event there is a mismatch between what you downloaded and the version in your Bucket, your error handler will receive an error with code &quot;CONTENT_DOWNLOAD_MISMATCH&quot;. If you receive this error, the best recourse is to try downloading the file again.</p><p>For faster crc32c computation, you must manually install <a href="http://www.gitnpm.com/fast-crc32c"><code>fast-crc32c</code></a>:</p><pre><code>$ npm install --save fast-crc32c </code></pre><p>NOTE: Readable streams will emit the <code>end</code> event when the file is fully downloaded.</p>
 	**/
-	@:overload(function():Void { })
+	@:overload(function():js.node.fs.ReadStream { })
 	function createReadStream(options:{ /**
 		<ul> <li>Possible values: <code>&quot;md5&quot;</code>, <code>&quot;crc32c&quot;</code>, or <code>false</code>. By default, data integrity is validated with an  MD5 checksum for maximum reliability, falling back to CRC32c when an MD5  hash wasn&#39;t returned from the API. CRC32c will provide better performance  with less reliability. You may also choose to skip validation completely,  however this is <strong>not recommended</strong>.</li> </ul> 
 	**/
@@ -50,7 +50,7 @@ package gcloud.storage;
 	var start : Float; /**
 		<ul> <li>A byte offset to stop reading the file at. NOTE: Byte ranges are inclusive; that is, <code>options.start = 0</code> and  <code>options.end = 999</code> represent the first 1000 bytes in a file or object.  NOTE: when specifying a byte range, data integrity is not available.</li> </ul> 
 	**/
-	var end : Float; }):Void;
+	var end : Float; }):js.node.fs.ReadStream;
 	/**
 		<p>Create a unique resumable upload session URI. This is the first step when performing a resumable upload.</p><p>See the <a href="https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable">Resumable upload guide</a> for more on how the entire process works.</p><h4>Note</h4> <p>If you are just looking to perform a resumable upload without worrying about any of the details, see <a data-custom-type="storage/createWriteStream" data-method="">storage/createWriteStream</a>. Resumable uploads are performed by default.</p>
 	**/
@@ -68,7 +68,7 @@ package gcloud.storage;
 	/**
 		<p>Create a writable stream to overwrite the contents of the file in your bucket.</p><p>A File object can also be used to create files for the first time.</p><p>Resumable uploads are automatically enabled and must be shut off explicitly by setting <code>options.resumable</code> to <code>false</code>.</p><p>For faster crc32c computation, you must manually install <a href="http://www.gitnpm.com/fast-crc32c"><code>fast-crc32c</code></a>:</p><pre><code>$ npm install --save fast-crc32c </code></pre><p>NOTE: Writable streams will emit the <code>finish</code> event when the file is fully uploaded.</p>
 	**/
-	@:overload(function():Void { })
+	@:overload(function():js.node.fs.WriteStream { })
 	function createWriteStream(options:{ /**
 		<ul> <li>Automatically gzip the file. This will set <code>options.metadata.contentEncoding</code> to <code>gzip</code>.</li> </ul> 
 	**/
@@ -91,7 +91,7 @@ package gcloud.storage;
 	var uri : String; /**
 		<ul> <li>Possible values: <code>&quot;md5&quot;</code>, <code>&quot;crc32c&quot;</code>, or <code>false</code>. By default, data integrity is validated with an  MD5 checksum for maximum reliability. CRC32c will provide better  performance with less reliability. You may also choose to skip validation  completely, however this is <strong>not recommended</strong>.</li> </ul> 
 	**/
-	var validation : haxe.extern.EitherType<Bool, String>; }):Void;
+	var validation : haxe.extern.EitherType<Bool, String>; }):js.node.fs.WriteStream;
 	/**
 		<p>Convenience method to download a file into memory or to a local destination.</p>
 	**/
@@ -101,9 +101,9 @@ package gcloud.storage;
 	**/
 	var destination : String; }, callback:js.Error -> js.node.buffer.Buffer -> Void):Void;
 	/**
-		<p>The Storage API allows you to use a custom key for server-side encryption. Supply this method with a passphrase and the correct key (AES-256) will be generated and used for you.</p>
+		<p>The Storage API allows you to use a custom key for server-side encryption.</p>
 	**/
-	function setKey(key:haxe.extern.EitherType<js.node.buffer.Buffer, String>):gcloud.storage.File;
+	function setEncryptionKey(encryptionKey:haxe.extern.EitherType<js.node.buffer.Buffer, String>):gcloud.storage.File;
 	/**
 		<p>Get a signed policy document to allow a user to upload data with a POST request.</p>
 	**/
@@ -145,6 +145,10 @@ package gcloud.storage;
 		<ul> <li>&quot;read&quot; (HTTP: GET), &quot;write&quot; (HTTP: PUT), or &quot;delete&quot; (HTTP: DELETE).</li> </ul> 
 	**/
 	var action : String; /**
+		<ul> <li>The cname for this bucket, i.e., &quot;<a href="https://cdn.example.com">https://cdn.example.com</a>&quot;.</li> </ul> 
+	**/
+	@:optional
+	var cname : String; /**
 		<ul> <li>The MD5 digest value in base64. If you provide this, the client must provide this HTTP header with this same  value in its request.</li> </ul> 
 	**/
 	@:optional
@@ -176,6 +180,10 @@ package gcloud.storage;
 		<ul> <li>&quot;read&quot; (HTTP: GET), &quot;write&quot; (HTTP: PUT), or &quot;delete&quot; (HTTP: DELETE).</li> </ul> 
 	**/
 	var action : String; /**
+		<ul> <li>The cname for this bucket, i.e., &quot;<a href="https://cdn.example.com">https://cdn.example.com</a>&quot;.</li> </ul> 
+	**/
+	@:optional
+	var cname : String; /**
 		<ul> <li>The MD5 digest value in base64. If you provide this, the client must provide this HTTP header with this same  value in its request.</li> </ul> 
 	**/
 	@:optional
@@ -204,7 +212,7 @@ package gcloud.storage;
 	@:optional
 	var responseType : String; }, callback:js.Error -> String -> Void):Void;
 	/**
-		<p>Make a file private to the project and remove all other permissions. Set <code>options.strict</code> to true to make the file private to only the owner.</p>
+		<p>$/, &#39;&#39;), // Remove trailing slashes.  name: name,  id: &#39;?GoogleAccessId=&#39; + credentials.client_email,  exp: &#39;&amp;Expires=&#39; + expiresInSeconds,  sig: &#39;&amp;Signature=&#39; + encodeURIComponent(signature),  type: responseContentType || &#39;&#39;,  disp: responseContentDisposition || &#39;&#39;,  gen: self.generation ? &#39;&amp;generation=&#39; + self.generation : &#39;&#39;  });</p><pre><code>callback(null, signedUrl); </code></pre><p> }); };</p><p>/** Make a file private to the project and remove all other permissions. Set <code>options.strict</code> to true to make the file private to only the owner.</p>
 	**/
 	@:overload(function(callback:js.Error -> Void):Void { })
 	@:overload(function():Void { })
@@ -224,7 +232,7 @@ package gcloud.storage;
 	@:overload(function():Void { })
 	function makePublic(callback:js.Error -> Dynamic -> Void):Void;
 	/**
-		<p>Move this file to another location. By default, this will move the file to the same bucket, but you can choose to move it to another Bucket by providing either a Bucket or File object.</p><p><strong>Warning</strong>: There is currently no atomic <code>move</code> method in the Google Cloud Storage API, so this method is a composition of <a data-custom-type="storage/file" data-method="copy">storage/file#copy</a> (to the new location) and <a data-custom-type="storage/file" data-method="delete">storage/file#delete</a> (from the old location). While unlikely, it is possible that an error returned to your callback could be triggered from either one of these API calls failing, which could leave a duplicate file lingering.</p>
+		<p>Move this file to another location. By default, this will move the file to the same bucket, but you can choose to move it to another Bucket by providing a Bucket or File object or a URL beginning with &quot;gs://&quot;.</p><p><strong>Warning</strong>: There is currently no atomic <code>move</code> method in the Google Cloud Storage API, so this method is a composition of <a data-custom-type="storage/file" data-method="copy">storage/file#copy</a> (to the new location) and <a data-custom-type="storage/file" data-method="delete">storage/file#delete</a> (from the old location). While unlikely, it is possible that an error returned to your callback could be triggered from either one of these API calls failing, which could leave a duplicate file lingering.</p>
 	**/
 	@:overload(function(destination:haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<gcloud.storage.Bucket, String>>):Void { })
 	function move(destination:haxe.extern.EitherType<gcloud.storage.File, haxe.extern.EitherType<gcloud.storage.Bucket, String>>, callback:js.Error -> gcloud.storage.File -> Dynamic -> Void):Void;

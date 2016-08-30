@@ -13,20 +13,25 @@ using Lambda;
 class Generator {
 	
 	static var printer = new Printer();
-	static var definitionDirectory = Sys.programPath().directory() + '/../../ref/docs/json/master/';
+	static var definitionDirectory = Sys.programPath().directory() + '/../../ref/docs/json/';
 	static var outputDirectory = Sys.programPath().directory() + '/../../src/';
 	static var keywords = ['public', 'private', 'import'];
 	static var typeNames = new Map();
 	
 	public static function main() {
-		var types:Array<GCloudType> = '$definitionDirectory/types.json'.getContent().parse();
-		var definitions = [for(type in types) '$definitionDirectory/${type.contents}'.getContent().parse()];
+		var definitions:Array<Definition> = [];
+		for(folder in definitionDirectory.readDirectory()) {
+			var currentDirectory = '$definitionDirectory/$folder/master';
+			var currentTypes:Array<GCloudType> = '$currentDirectory/types.json'.getContent().parse();
+			definitions = definitions.concat([for(type in currentTypes) '$currentDirectory/${type.contents}'.getContent().parse()]);
+		}
+		
 		for(def in definitions) {
 			var pack = ['gcloud'].concat(def.parent == null ? [] : def.parent.split('/'));
 			typeNames.set(def.id, pack.join('.') + '.' + def.name);
 		}
-		for(type in types) {
-			var def:Definition = '$definitionDirectory/${type.contents}'.getContent().parse();
+		
+		for(def in definitions) {
 			switch def.type {
 				case 'class': buildClass(def);
 				case t: trace('unhandled definition type: "$t"');
@@ -38,13 +43,13 @@ class Generator {
 		if(def.type != 'class') throw 'assert';
 		var cl = macro class {}
 		cl.name = switch def.name {
-			case 'gcloud': 'GCloud';
+			case 'google-cloud': 'GCloud';
 			case name: name;
 		}
 		cl.pack = typeNames[def.id].split('.');
 		cl.pack.pop(); // pop the class name
 		cl.isExtern = true;
-		var require = ['gcloud'].concat(def.source.split('/').slice(1));
+		var require = ['google-cloud'].concat(def.source.replace('packages/', '').replace('src/', '').split('/'));
 		switch require.pop() {
 			case 'index.js':
 			case v: require.push(v.replace('.js', ''));
@@ -57,7 +62,7 @@ class Generator {
 					expr: EConst(CString(require.shift())),
 					pos: null,
 				}];
-				if(require.length > 0) params.push({
+				if(require.length > 0 && require[0] != 'google-cloud') params.push({
 					expr: EConst(CString(require.join('.'))),
 					pos: null,
 				});
@@ -97,7 +102,13 @@ class Generator {
 		var ret = method.type == 'constructor' ? null : switch method.returns {
 			case []: macro:Void;
 			case [v]: toHaxeType(v.types);
-			default: throw 'multiple return';
+			default:
+				if(method.returns[0].types[0].toLowerCase() == 'function') {
+					var types = [for(i in 1...method.returns.length) toHaxeType(method.returns[i].types)];
+					TFunction([for(i in 1...method.returns.length) toHaxeType(method.returns[i].types)], macro:Void);
+				} else {
+					throw 'multiple return';
+				}
 		}
 		
 		var meta:Metadata = switch method.name {
@@ -158,7 +169,6 @@ class Generator {
 		return output;
 	}
 	
-	static var dataTypeRegex = ~/data-custom-type="([^"]*)"/gi;
 	static function toHaxeType(native:Array<String>, ?name:String, ?params:Array<Param>) {
 		
 		function single(v:String) {
@@ -175,6 +185,7 @@ class Generator {
 				case 'buffer': macro:js.node.buffer.Buffer;
 				case 'readablestream' | 'readstream': macro:js.node.fs.ReadStream;
 				case 'writablestream' | 'writestream': macro:js.node.fs.WriteStream;
+				case 'operation': macro:js.node.events.EventEmitter;
 				case 'function':
 					if(params == null) {
 						macro:Void->Dynamic;
@@ -252,12 +263,15 @@ class Generator {
 				}, seed);
 		}
 	}
+	
+	static var dataTypeRegex = ~/data-custom-type="([^"]*)"/gi;
 }
 
 typedef GCloudType = {
 	id:String,
 	title:String,
 	contents:String,
+	?folder:String,
 }
 
 typedef Definition = {

@@ -1,5 +1,5 @@
 package gcloud.logging;
-@:jsRequire("gcloud", "logging.entry") extern class Entry {
+@:jsRequire("google-cloud", "logging.entry") extern class Entry {
 	/**
 		<p>Create an entry object to define new data to insert into a log.</p>
 	**/

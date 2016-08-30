@@ -1,5 +1,5 @@
 package gcloud.pubsub;
-@:jsRequire("gcloud", "pubsub.subscription") extern class Subscription {
+@:jsRequire("google-cloud", "pubsub.subscription") extern class Subscription {
 	/**
 		<p>A Subscription object will give you access to your Google Cloud Pub/Sub subscription.</p><p>Subscriptions are sometimes retrieved when using various methods:</p><ul> <li><a data-custom-type="pubsub" data-method="getSubscriptions">pubsub#getSubscriptions</a></li> <li><a data-custom-type="pubsub/topic" data-method="getSubscriptions">pubsub/topic#getSubscriptions</a></li> <li><a data-custom-type="pubsub/topic" data-method="subscribe">pubsub/topic#subscribe</a></li> </ul> <p>Subscription objects may be created directly with:</p><ul> <li><a data-custom-type="pubsub/topic" data-method="subscription">pubsub/topic#subscription</a></li> </ul> <p>All Subscription objects are instances of an <a href="http://nodejs.org/api/events.html">EventEmitter</a>. The subscription will pull for messages automatically as long as there is at least one listener assigned for the <code>message</code> event.</p>
 	**/

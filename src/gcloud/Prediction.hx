@@ -1,5 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud", "prediction") extern class Prediction {
+@:jsRequire("google-cloud", "prediction") extern class Prediction {
 	/**
 		<p>The <a href="https://cloud.google.com/prediction/docs/getting-started">Google Prediction API</a> provides pattern-matching and machine learning capabilities. Given a set of data examples to train against, you can create applications that can perform the following tasks:</p><ul> <li>Given a user&#39;s past viewing habits, predict what other movies or products a user might like.</li> <li>Categorize emails as spam or non-spam.</li> <li>Analyze posted comments about your product to determine whether they have a positive or negative tone.</li> <li>Guess how much a user might spend on a given day, given his spending history.</li> </ul> 
 	**/

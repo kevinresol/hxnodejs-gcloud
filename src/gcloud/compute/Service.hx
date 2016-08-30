@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.service") extern class Service {
+@:jsRequire("google-cloud", "compute.service") extern class Service {
 	/**
 		<p>An HTTP(S) load balancing backend service is a centralized service for managing backends, which in turn manage instances that handle user requests. You configure your load balancing service to route requests to your backend service. The backend service in turn knows which instances it can use, how much traffic they can handle, and how much traffic they are currently handling. In addition, the backend service monitors health checking and does not send traffic to unhealthy instances.</p>
 	**/

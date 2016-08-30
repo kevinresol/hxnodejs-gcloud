@@ -1,5 +1,5 @@
 package gcloud.storage;
-@:jsRequire("gcloud", "storage.channel") extern class Channel {
+@:jsRequire("google-cloud", "storage.channel") extern class Channel {
 	/**
 		<p>Create a channel object to interact with a Google Cloud Storage channel.</p>
 	**/

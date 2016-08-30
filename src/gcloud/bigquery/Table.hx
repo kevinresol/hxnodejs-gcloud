@@ -1,5 +1,5 @@
 package gcloud.bigquery;
-@:jsRequire("gcloud", "bigquery.table") extern class Table {
+@:jsRequire("google-cloud", "bigquery.table") extern class Table {
 	/**
 		<p>Table objects are returned by methods such as <a data-custom-type="bigquery/dataset" data-method="table">bigquery/dataset#table</a>, <a data-custom-type="bigquery/dataset" data-method="createTable">bigquery/dataset#createTable</a>, and <a data-custom-type="bigquery/dataset" data-method="getTables">bigquery/dataset#getTables</a>.</p>
 	**/
@@ -40,7 +40,7 @@ package gcloud.bigquery;
 	**/
 	function createReadStream():js.node.fs.ReadStream;
 	/**
-		<p>Load data into your table from a readable stream of JSON or CSV-formatted data.</p>
+		<p>Load data into your table from a readable stream of JSON, CSV, or AVRO data.</p>
 	**/
 	@:overload(function():js.node.fs.WriteStream { })
 	function createWriteStream(metadata:haxe.extern.EitherType<Dynamic, String>):js.node.fs.WriteStream;
@@ -70,11 +70,14 @@ package gcloud.bigquery;
 	**/
 	var maxResults : Float; }, callback:js.Error -> Array<Dynamic> -> Dynamic -> Dynamic -> Void):Void;
 	/**
-		<p>Load data from a local file or Storage file (<a data-custom-type="storage/file" data-method="">storage/file</a>).</p><p>By loading data this way, you create a load job that will run your data load asynchronously. If you would like instantaneous access to your data, insert it using <a data-custom-type="bigquery/table" data-method="insert">bigquery/table#insert</a>.</p><p>Note: Only JSON and CSV source files are supported. The file type will be inferred by the given file&#39;s extension. If you wish to override this, you must provide a <code>metadata</code> object.</p>
+		<p>Load data from a local file or Storage file (<a data-custom-type="storage/file" data-method="">storage/file</a>).</p><p>By loading data this way, you create a load job that will run your data load asynchronously. If you would like instantaneous access to your data, insert it using <a data-custom-type="bigquery/table" data-method="insert">bigquery/table#insert</a>.</p><p>Note: The file type will be inferred by the given file&#39;s extension. If you wish to override this, you must provide <code>metadata.format</code>.</p>
 	**/
 	@:overload(function(source:haxe.extern.EitherType<gcloud.storage.File, String>, callback:js.Error -> gcloud.bigquery.Job -> Dynamic -> Void):Void { })
 	@:native("import")
-	function import_(source:haxe.extern.EitherType<gcloud.storage.File, String>, metadata:Dynamic, callback:js.Error -> gcloud.bigquery.Job -> Dynamic -> Void):Void;
+	function import_(source:haxe.extern.EitherType<gcloud.storage.File, String>, metadata:{ /**
+		<ul> <li>The format the data being imported is in. Allowed options are &quot;CSV&quot;, &quot;JSON&quot;, or &quot;AVRO&quot;.</li> </ul> 
+	**/
+	var format : String; }, callback:js.Error -> gcloud.bigquery.Job -> Dynamic -> Void):Void;
 	/**
 		<p>Stream data into BigQuery one record at a time without running a load job.</p><p>There are more strict quota limits using this method so it is highly recommended that you load data into BigQuery using <a data-custom-type="bigquery/table" data-method="import">bigquery/table#import</a> instead.</p>
 	**/

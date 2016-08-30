@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.region") extern class Region {
+@:jsRequire("google-cloud", "compute.region") extern class Region {
 	/**
 		<p>A Region object allows you to interact with a Google Compute Engine region.</p>
 	**/
@@ -27,6 +27,16 @@ package gcloud.compute;
 	**/
 	@:overload(function(name:String, callback:js.Error -> gcloud.compute.Address -> gcloud.compute.Operation -> Dynamic -> Void):Void { })
 	function createAddress(name:String, options:Dynamic, callback:js.Error -> gcloud.compute.Address -> gcloud.compute.Operation -> Dynamic -> Void):Void;
+	/**
+		<p>Create a subnetwork in this region.</p>
+	**/
+	function createSubnetwork(name:String, config:{ /**
+		<ul> <li>The network to which this subnetwork belongs. <strong>Only networks that are in the distributed mode  can have subnetworks.</strong></li> </ul> 
+	**/
+	var network : haxe.extern.EitherType<String, gcloud.compute.Network>; /**
+		<ul> <li>The range of internal addresses that are owned by this subnetwork. <a href="http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> range  of addresses that are legal on this network. (Alias for  <code>config.ipCidrRange</code>)</li> </ul> 
+	**/
+	var range : String; }, callback:js.Error -> gcloud.compute.Subnetwork -> gcloud.compute.Operation -> Dynamic -> Void):Void;
 	/**
 		<p>Create a forwarding rule in this region.</p>
 	**/
@@ -107,6 +117,26 @@ package gcloud.compute;
 	**/
 	var pageToken : String; }, callback:js.Error -> gcloud.compute.Rule -> Dynamic -> Dynamic -> Void):Void;
 	/**
+		<p>Get a list of subnetworks in this region.</p>
+	**/
+	@:overload(function(callback:js.Error -> Array<gcloud.compute.Subnetwork> -> Dynamic -> Dynamic -> Void):Void { })
+	function getSubnetworks(options:{ /**
+		<ul> <li>Have pagination handled automatically. Default: true.</li> </ul> 
+	**/
+	var autoPaginate : Bool; /**
+		<ul> <li>Search filter in the format of <code>{name} {comparison} {filterString}</code>.<ul> <li><strong><code>name</code></strong>: the name of the field to compare</li> <li><strong><code>comparison</code></strong>: the comparison operator, <code>eq</code> (equal) or <code>ne</code> (not equal)</li> <li><strong><code>filterString</code></strong>: the string to filter to. For string fields, this can be a regular expression.</li> </ul> </li> </ul> 
+	**/
+	var filter : String; /**
+		<ul> <li>Maximum number of API calls to make.</li> </ul> 
+	**/
+	var maxApiCalls : Float; /**
+		<ul> <li>Maximum number of subnetworks to return.</li> </ul> 
+	**/
+	var maxResults : Float; /**
+		<ul> <li>A previously-returned page token representing part of the larger set of results to view.</li> </ul> 
+	**/
+	var pageToken : String; }, callback:js.Error -> Array<gcloud.compute.Subnetwork> -> Dynamic -> Dynamic -> Void):Void;
+	/**
 		<p>Get a reference to a Google Compute Engine region operation.</p>
 	**/
 	function operation(name:String):gcloud.compute.Operation;
@@ -114,4 +144,8 @@ package gcloud.compute;
 		<p>Get a reference to a Google Compute Engine forwarding rule in this region.</p>
 	**/
 	function rule(name:String):gcloud.compute.Rule;
+	/**
+		<p>Get a reference to a Google Compute Engine subnetwork in this region.</p>
+	**/
+	function subnetwork(name:String):gcloud.compute.Subnetwork;
 }

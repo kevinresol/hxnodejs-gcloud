@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.vm") extern class VM {
+@:jsRequire("google-cloud", "compute.vm") extern class VM {
 	/**
 		<p>An Instance object allows you to interact with a Google Compute Engine instance.</p>
 	**/
@@ -58,6 +58,14 @@ package gcloud.compute;
 	**/
 	@:overload(function():Void { })
 	function reset(callback:js.Error -> gcloud.compute.Operation -> Dynamic -> Void):Void;
+	/**
+		<p>Set the machine type for this instance, <strong>stopping and restarting the VM as necessary</strong>.</p><p>For a list of the standard, high-memory, and high-CPU machines you may choose from, see <a href="<a href="https://cloud.google.com/compute/docs/machine-types#predefined_machine_types">Predefined machine types</a>">https://cloud.google.com/compute/docs/machine-types#predefined_machine_types}</a>.</p><p>In order to change the machine type, the VM must not be running. This method will automatically stop the VM if it is running before changing the machine type. After it is sucessfully changed, the VM will be started.</p>
+	**/
+	@:overload(function(machineType:String, callback:js.Error -> Dynamic -> Void):Void { })
+	function resize(machineType:String, options:{ /**
+		<ul> <li>Start the VM after successfully updating the machine type. Default: <code>false</code>.</li> </ul> 
+	**/
+	var start : Bool; }, callback:js.Error -> Dynamic -> Void):Void;
 	/**
 		<p>Set the metadata for this instance.</p>
 	**/

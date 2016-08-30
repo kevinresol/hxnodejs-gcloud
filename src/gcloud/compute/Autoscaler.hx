@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.autoscaler") extern class Autoscaler {
+@:jsRequire("google-cloud", "compute.autoscaler") extern class Autoscaler {
 	/**
 		<p>Autoscalers allow you to automatically scale virtual machine instances in managed instance groups according to an autoscaling policy that you define.</p>
 	**/

@@ -1,8 +1,5 @@
 package gcloud;
-@:jsRequire("gcloud", "datastore") extern class Datastore {
-	/**
-		<p>Interact with the <a href="https://developers.google.com/datastore/">Google Cloud Datastore</a>.</p>
-	**/
+@:jsRequire("google-cloud", "datastore") extern class Datastore {
 	@:selfCall
 	function new(options:{ /**
 		<ul> <li>Override the default API endpoint used to reach Datastore. This is useful for connecting to your local Datastore  server (usually &quot;<a href="http://localhost:8080">http://localhost:8080</a>&quot;).</li> </ul> 
@@ -70,10 +67,6 @@ package gcloud;
 	**/
 	@:optional
 	var namespace : String; }):gcloud.datastore.Key;
-	/**
-		<p>Run a function in the context of a new transaction. Transactions allow you to perform multiple operations, committing your changes atomically. When you are finished making your changes within the transaction, run the done() function provided in the callback function to commit your changes. See an example below for more information.</p>
-	**/
-	function runInTransaction(fn:gcloud.datastore.Transaction -> (Void -> Dynamic) -> Void, callback:js.Error -> Void):Void;
 	/**
 		<p>Generate IDs without creating entities.</p>
 	**/

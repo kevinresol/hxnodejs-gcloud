@@ -1,9 +1,13 @@
 package gcloud;
-@:jsRequire("gcloud") extern class GCloud {
+@:jsRequire("google-cloud") extern class gcloud {
 	/**
 		<p>Analyze Big Data in the cloud with <a href="https://cloud.google.com/bigquery">Google BigQuery</a>. Run fast, SQL-like queries against multi-terabyte datasets in seconds. Scalable and easy to use, BigQuery gives you real-time insights about your data.</p>
 	**/
 	function bigquery():gcloud.BigQuery;
+	/**
+		<p><a href="https://cloud.google.com/bigtable/">Cloud Bigtable</a> is Google&#39;s NoSQL Big Data database service. It&#39;s the same database that powers many core Google services, including Search, Analytics, Maps, and Gmail.</p>
+	**/
+	function bigtable():gcloud.Bigtable;
 	/**
 		<p>With <a href="https://cloud.google.com/compute/">Compute Engine</a>, you can run large-scale workloads on virtual machines hosted on Google&#39;s infrastructure. Choose a VM that fits your needs and gain the performance of Google’s worldwide fiber network.</p>
 	**/
@@ -17,13 +21,17 @@ package gcloud;
 	**/
 	function dns():gcloud.DNS;
 	/**
-		<p>The <a href="https://cloud.google.com/prediction/docs/getting-started">Google Prediction API</a> provides pattern-matching and machine learning capabilities. Given a set of data examples to train against, you can create applications that can perform the following tasks:</p><ul> <li>Given a user&#39;s past viewing habits, predict what other movies or products a user might like.</li> <li>Categorize emails as spam or non-spam.</li> <li>Analyze posted comments about your product to determine whether they have a positive or negative tone.</li> <li>Guess how much a user might spend on a given day, given his spending history.</li> </ul> 
+		<p>The <a href="https://cloud.google.com/natural-language/docs">Google Cloud Natural Language</a> API provides natural language understanding technologies to developers, including sentiment analysis, entity recognition, and syntax analysis.</p><p class="notice">  <strong>This is a Beta release of Google Cloud Natural Language.</strong> This API is  not covered by any SLA or deprecation policy and may be subject to  backward-incompatible changes. </p>
 	**/
-	function prediction():gcloud.Prediction;
+	function language():gcloud.Language;
 	/**
 		<p><a href="https://cloud.google.com/logging/docs">Google Cloud Logging</a> collects and stores logs from applications and services on the Google Cloud Platform:</p><ul> <li>Export your logs to Google Cloud Storage, Google BigQuery, or Google Cloud Pub/Sub.</li> <li>Integrate third-party logs from your virtual machine instances by installing the logging agent, <code>google-fluentd</code>.</li> </ul> <p class="notice">  <strong>This is a Beta release of Google Cloud Logging.</strong> This API is not  covered by any SLA or deprecation policy and may be subject to backward-  incompatible changes. </p>
 	**/
 	function logging():gcloud.Logging;
+	/**
+		<p>The <a href="https://cloud.google.com/prediction/docs/getting-started">Google Prediction API</a> provides pattern-matching and machine learning capabilities. Given a set of data examples to train against, you can create applications that can perform the following tasks:</p><ul> <li>Given a user&#39;s past viewing habits, predict what other movies or products a user might like.</li> <li>Categorize emails as spam or non-spam.</li> <li>Analyze posted comments about your product to determine whether they have a positive or negative tone.</li> <li>Guess how much a user might spend on a given day, given his spending history.</li> </ul> 
+	**/
+	function prediction():gcloud.Prediction;
 	/**
 		<p><a href="https://developers.google.com/pubsub/overview">Google Cloud Pub/Sub</a> is a reliable, many-to-many, asynchronous messaging service from Google Cloud Platform.</p>
 	**/

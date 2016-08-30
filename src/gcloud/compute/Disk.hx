@@ -1,5 +1,5 @@
 package gcloud.compute;
-@:jsRequire("gcloud", "compute.disk") extern class Disk {
+@:jsRequire("google-cloud", "compute.disk") extern class Disk {
 	/**
 		<p>A Disk object allows you to interact with a Google Compute Engine disk.</p>
 	**/
