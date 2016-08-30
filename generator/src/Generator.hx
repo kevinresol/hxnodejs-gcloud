@@ -27,7 +27,7 @@ class Generator {
 		}
 		
 		for(def in definitions) {
-			var pack = ['gcloud'].concat(def.parent == null ? [] : def.parent.split('/'));
+			var pack = ['google', 'cloud'].concat(def.parent == null ? [] : def.parent.split('/'));
 			typeNames.set(def.id, pack.join('.') + '.' + def.name);
 		}
 		
@@ -43,7 +43,7 @@ class Generator {
 		if(def.type != 'class') throw 'assert';
 		var cl = macro class {}
 		cl.name = switch def.name {
-			case 'google-cloud': 'GCloud';
+			case 'google-cloud': 'GoogleCloud';
 			case name: name;
 		}
 		cl.pack = typeNames[def.id].split('.');
