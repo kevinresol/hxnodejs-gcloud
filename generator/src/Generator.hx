@@ -185,7 +185,7 @@ class Generator {
 				case 'buffer': macro:js.node.buffer.Buffer;
 				case 'readablestream' | 'readstream': macro:js.node.fs.ReadStream;
 				case 'writablestream' | 'writestream': macro:js.node.fs.WriteStream;
-				case 'operation': macro:js.node.events.EventEmitter;
+				case 'operation': macro:js.node.events.EventEmitter.IEventEmitter;
 				case 'function':
 					if(params == null) {
 						macro:Void->Dynamic;

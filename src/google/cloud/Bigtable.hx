@@ -5,14 +5,14 @@ package google.cloud;
 	/**
 		<p>Create a Compute instance.</p>
 	**/
-	@:overload(function(name:String, callback:js.Error -> google.cloud.bigtable.Instance -> js.node.events.EventEmitter -> Dynamic -> Void):Void { })
+	@:overload(function(name:String, callback:js.Error -> google.cloud.bigtable.Instance -> js.node.events.EventEmitter.IEventEmitter -> Dynamic -> Void):Void { })
 	function createInstance(name:String, options:{ /**
 		<ul> <li>The clusters to be created within the instance.</li> </ul> 
 	**/
 	var clusters : Array<Dynamic>; /**
 		<ul> <li>The descriptive name for this instance as it appears in UIs.</li> </ul> 
 	**/
-	var displayName : String; }, callback:js.Error -> google.cloud.bigtable.Instance -> js.node.events.EventEmitter -> Dynamic -> Void):Void;
+	var displayName : String; }, callback:js.Error -> google.cloud.bigtable.Instance -> js.node.events.EventEmitter.IEventEmitter -> Dynamic -> Void):Void;
 	/**
 		<p>Get Instance objects for all of your Compute instances.</p>
 	**/
@@ -36,5 +36,5 @@ package google.cloud;
 	/**
 		<p>Get a reference to an Operation.</p>
 	**/
-	function operation(name:String):js.node.events.EventEmitter;
+	function operation(name:String):js.node.events.EventEmitter.IEventEmitter;
 }

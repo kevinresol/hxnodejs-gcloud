@@ -37,7 +37,7 @@ package google.cloud.bigtable;
 	/**
 		<p>Create a cluster.</p>
 	**/
-	@:overload(function(name:String, callback:js.Error -> google.cloud.bigtable.Cluster -> js.node.events.EventEmitter -> Dynamic -> Void):Void { })
+	@:overload(function(name:String, callback:js.Error -> google.cloud.bigtable.Cluster -> js.node.events.EventEmitter.IEventEmitter -> Dynamic -> Void):Void { })
 	function createCluster(name:String, options:{ /**
 		<ul> <li>The location where this cluster&#39;s nodes and storage reside. For best performance clients should be located as  as close as possible to this cluster. Currently only zones are  supported.</li> </ul> 
 	**/
@@ -47,7 +47,7 @@ package google.cloud.bigtable;
 	var nodes : Float; /**
 		<ul> <li>The type of storage used by this cluster to serve its parent instance&#39;s tables. Options are &#39;hdd&#39; or &#39;ssd&#39;.</li> </ul> 
 	**/
-	var storage : String; }, callback:js.Error -> google.cloud.bigtable.Cluster -> js.node.events.EventEmitter -> Dynamic -> Void):Void;
+	var storage : String; }, callback:js.Error -> google.cloud.bigtable.Cluster -> js.node.events.EventEmitter.IEventEmitter -> Dynamic -> Void):Void;
 	/**
 		<p>Create a table on your Bigtable instance.</p>
 	**/

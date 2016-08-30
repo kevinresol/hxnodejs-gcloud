@@ -38,5 +38,5 @@ package google.cloud.bigtable;
 	var nodes : Float; /**
 		<ul> <li>The cluster storage type.</li> </ul> 
 	**/
-	var storage : String; }, callback:js.Error -> js.node.events.EventEmitter -> Dynamic -> Void):Void;
+	var storage : String; }, callback:js.Error -> js.node.events.EventEmitter.IEventEmitter -> Dynamic -> Void):Void;
 }
