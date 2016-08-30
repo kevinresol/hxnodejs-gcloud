@@ -181,7 +181,7 @@ class Generator {
 				case 'number': macro:Float;
 				case 'string': macro:String;
 				case 'array': macro:Array<Dynamic>;
-				case 'key': macro:gcloud.datastore.Key;
+				case 'key': macro:google.cloud.datastore.Key;
 				case 'buffer': macro:js.node.buffer.Buffer;
 				case 'readablestream' | 'readstream': macro:js.node.fs.ReadStream;
 				case 'writablestream' | 'writestream': macro:js.node.fs.WriteStream;

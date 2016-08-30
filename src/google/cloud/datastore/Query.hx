@@ -13,7 +13,7 @@ package google.cloud.datastore;
 	/**
 		<p>Filter a query by ancestors.</p>
 	**/
-	function hasAncestor(key:gcloud.datastore.Key):google.cloud.datastore.Query;
+	function hasAncestor(key:google.cloud.datastore.Key):google.cloud.datastore.Query;
 	/**
 		<p>Sort the results by a property name in ascending or descending order. By default, an ascending sort order will be used.</p>
 	**/

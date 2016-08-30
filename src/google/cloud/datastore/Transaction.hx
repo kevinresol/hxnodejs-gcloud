@@ -17,7 +17,7 @@ package google.cloud.datastore;
 	/**
 		<p>Delete all entities identified with the specified key(s) in the current transaction.</p>
 	**/
-	function delete(key:haxe.extern.EitherType<Array<gcloud.datastore.Key>, gcloud.datastore.Key>):Void;
+	function delete(key:haxe.extern.EitherType<Array<google.cloud.datastore.Key>, google.cloud.datastore.Key>):Void;
 	/**
 		<p>Reverse a transaction remotely and finalize the current transaction instance.</p>
 	**/
@@ -32,25 +32,25 @@ package google.cloud.datastore;
 	function save(entities:haxe.extern.EitherType<Array<{ /**
 		<ul> <li>Datastore key object.</li> </ul> 
 	**/
-	var key : gcloud.datastore.Key; /**
+	var key : google.cloud.datastore.Key; /**
 		<ul> <li>Data to save with the provided key. If you provide an array of objects, you must use the explicit syntax:  <code>name</code> for the name of the property and <code>value</code> for its value. You may  also specify an <code>excludeFromIndexes</code> property, set to <code>true</code> or <code>false</code>.</li> </ul> 
 	**/
 	var data : haxe.extern.EitherType<Array<Dynamic>, Dynamic>; }>, { /**
 		<ul> <li>Datastore key object.</li> </ul> 
 	**/
-	var key : gcloud.datastore.Key; /**
+	var key : google.cloud.datastore.Key; /**
 		<ul> <li>Data to save with the provided key. If you provide an array of objects, you must use the explicit syntax:  <code>name</code> for the name of the property and <code>value</code> for its value. You may  also specify an <code>excludeFromIndexes</code> property, set to <code>true</code> or <code>false</code>.</li> </ul> 
 	**/
 	var data : haxe.extern.EitherType<Array<Dynamic>, Dynamic>; }>):Void;
 	/**
 		<p>Generate IDs without creating entities.</p>
 	**/
-	function allocateIds(incompleteKey:gcloud.datastore.Key, n:Float, callback:js.Error -> Array<Dynamic> -> Dynamic -> Void):Void;
+	function allocateIds(incompleteKey:google.cloud.datastore.Key, n:Float, callback:js.Error -> Array<Dynamic> -> Dynamic -> Void):Void;
 	/**
 		<p>Retrieve the entities identified with the specified key(s) in the current transaction. Get operations require a valid key to retrieve the key-identified entity from Datastore.</p>
 	**/
-	@:overload(function(keys:haxe.extern.EitherType<Array<gcloud.datastore.Key>, gcloud.datastore.Key>, callback:js.Error -> haxe.extern.EitherType<Array<Dynamic>, Dynamic> -> Void):Void { })
-	function get(keys:haxe.extern.EitherType<Array<gcloud.datastore.Key>, gcloud.datastore.Key>, options:{ /**
+	@:overload(function(keys:haxe.extern.EitherType<Array<google.cloud.datastore.Key>, google.cloud.datastore.Key>, callback:js.Error -> haxe.extern.EitherType<Array<Dynamic>, Dynamic> -> Void):Void { })
+	function get(keys:haxe.extern.EitherType<Array<google.cloud.datastore.Key>, google.cloud.datastore.Key>, options:{ /**
 		<ul> <li>Specify either <code>strong</code> or <code>eventual</code>. If not specified, default values are chosen by Datastore for the  operation. Learn more about strong and eventual consistency  <a href="https://cloud.google.com/datastore/docs/articles/balancing-strong-and-eventual-consistency-with-google-cloud-datastore">here</a>.</li> </ul> 
 	**/
 	var consistency : String; /**
