@@ -4,7 +4,7 @@ package google.cloud;
 		<p><h4>ACLs</h4> Google Cloud Storage uses access control lists (ACLs) to manage object and bucket access. ACLs are the mechanism you use to share files with other users and allow other users to access your buckets and files.</p><p>To learn more about ACLs, read this overview on <a href="https://cloud.google.com/storage/docs/access-control">Access Control</a>.</p>
 	**/
 	@:selfCall
-	function new(options:Dynamic);
+	function new(?options:Dynamic);
 	/**
 		<p>Google Cloud Storage uses access control lists (ACLs) to manage object and bucket access. ACLs are the mechanism you use to share objects with other users and allow other users to access your buckets and objects.</p><p>This object provides constants to refer to the three permission levels that can be granted to an entity:</p><ul> <li><code>gcs.acl.OWNER_ROLE</code> - (&quot;OWNER&quot;)</li> <li><code>gcs.acl.READER_ROLE</code> - (&quot;READER&quot;)</li> <li><code>gcs.acl.WRITER_ROLE</code> - (&quot;WRITER&quot;)</li> </ul> 
 	**/
